@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vishwas Tiwari — Batcave Portfolio</title>
+  <meta name="description" content="Vishwas Tiwari — AI Builder, Co-Founder, Gotham's Engineer. Immersive 3D portfolio." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════ LOADER ═══════════════ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <svg class="bat-logo" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#f5c518" d="M500.1,281.4c-9.2,0-15.5,5.1-23.9,19.3c0,0-5.8-31.9-10.4-38.6c-4.4-6.4-15.8-19.6-43.2-12.7 c-28.5,7.1-55.2-1.3-95.3-25.2c-74.6-44.5-128.8-15-188-12.7c31.1,19.9,64.7,46.5,71.7,78.2c7.6,33.9,7.6,58.3-4.3,87.3 c50.8-31.5,88.4-23.5,135.2,14c32,25.6,44.7,56,46,92c32.7-52,47-79,112.2-79c65.5,0,79.5,27,112.2,79c1.3-36,14-66.4,46-92 c46.8-37.5,84.4-45.5,135.2-14c-11.9-29-11.9-53.4-4.3-87.3c6.9-31.8,40.6-58.3,71.7-78.2c-59.2-2.3-113.3-31.8-188,12.7 c-40,24-66.7,32.3-95.3,25.2c-27.4-6.9-38.8,6.3-43.2,12.7c-4.6,6.7-10.4,38.6-10.4,38.6C515.5,286.5,509.3,281.4,500.1,281.4z" transform="translate(0, 50)" />
+      </svg>
+      <h1 class="loader-name">VISHWAS TIWARI</h1>
+      <p class="loader-sub">GOTHAM'S AI ARCHITECT · BATCAVE CENTRAL NODE</p>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">ESTABLISHING SECURE CONNECTION TO BAT-COMPUTER...</div>
+      <button class="enter-btn" id="enterBtn" style="display:none">◈ ACCESS BATCAVE</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CANVAS ═══════════════ -->
+  <canvas id="cave"></canvas>
+
+  <!-- ═══════════════ HUD ═══════════════ -->
+  <div id="hud">
+    <div class="hud-tl">
+      BATCAVE COMMAND · NODE: HYD-01<br>
+      UPTIME: <span id="uptime">00:00:00</span>
+    </div>
+    <div class="hud-tr">
+      CLEARANCE: ALPHA · STATUS: OPEN TO WORK<br>
+      BUILD: v2.0 · SECURE LINK: ACTIVE
+    </div>
+    <div class="hud-bl">
+      STACK: THREE.JS · GLTF · WEBGL 2.0<br>
+      RENDERER: UNREAL BLOOM · ACESFILMIC
+    </div>
+    <div class="hud-br">
+      MISSIONS: 6+ · SKILLS: 20+<br>
+      LAYER: AI · EXECUTION · EMBEDDED
+    </div>
+    <!-- Corner brackets -->
+    <div class="corner corner-tl"><svg viewBox="0 0 24 24"><path d="M0,14 L0,0 L14,0" fill="none" stroke="#f5c518" stroke-width="1.5"/></svg></div>
+    <div class="corner corner-tr"><svg viewBox="0 0 24 24"><path d="M0,14 L0,0 L14,0" fill="none" stroke="#f5c518" stroke-width="1.5"/></svg></div>
+    <div class="corner corner-bl"><svg viewBox="0 0 24 24"><path d="M0,14 L0,0 L14,0" fill="none" stroke="#f5c518" stroke-width="1.5"/></svg></div>
+    <div class="corner corner-br"><svg viewBox="0 0 24 24"><path d="M0,14 L0,0 L14,0" fill="none" stroke="#f5c518" stroke-width="1.5"/></svg></div>
+  </div>
+
+  <!-- ═══════════════ SCANLINES ═══════════════ -->
+  <div id="scanlines"></div>
+
+  <!-- ═══════════════ MUTE BUTTON ═══════════════ -->
+  <button id="muteBtn" onclick="toggleMute()" style="display:none">🔊 SOUND</button>
+
+  <!-- ═══════════════ TICKER ═══════════════ -->
+  <div id="ticker">
+    <div class="ticker-label">GOTHAM INTEL</div>
+    <div class="ticker-track">
+      <div class="ticker-inner" id="tickerInner"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CAVE NAV BAR ═══════════════ -->
+  <nav id="caveNav" style="display:none">
+    <div class="nav-label">NAVIGATE</div>
+    <div class="nav-buttons" id="navButtons"></div>
+    <div class="nav-hint">SCROLL TO ZOOM · KEYS 1-6</div>
+  </nav>
+
+  <!-- ═══════════════ HOTSPOT TOOLTIP ═══════════════ -->
+  <div class="hotspot-label" id="hotspotLabel"></div>
+
+  <!-- ═══════════════ SCREEN OVERLAY (fullscreen HUD terminal) ═══════════════ -->
+  <div id="screenOverlay" class="screen-overlay hidden">
+    <div class="screen-scanlines"></div>
+    <div class="screen-vignette"></div>
+
+    <div class="screen-header">
+      <div class="screen-header-left">
+        <svg class="screen-bat-icon" viewBox="0 0 80 40" fill="#f5c518">
+          <path d="M40,3 C30,3 23,9 19,13 C13,10 3,11 1,18 C5,16 12,18 14,21 C12,23 10,28 13,31 C16,27 21,25 25,26 C27,30 33,34 40,34 C47,34 53,30 55,26 C59,25 64,27 67,31 C70,28 68,23 66,21 C68,18 75,16 79,18 C77,11 67,10 61,13 C57,9 50,3 40,3Z"/>
+        </svg>
+        <div>
+          <div class="screen-title-label">WAYNE ENTERPRISES · BAT-COMPUTER TERMINAL</div>
+          <div class="screen-section-name" id="screenSectionName">IDENTITY</div>
+        </div>
+      </div>
+      <div class="screen-header-right">
+        <div><span class="screen-status">● SECURE LINK ACTIVE</span></div>
+        <div class="screen-time" id="screenTime"></div>
+      </div>
+    </div>
+
+    <div class="screen-body" id="screenBody"></div>
+
+    <div class="screen-footer">
+      <span class="screen-nav" id="screenPrev">◄ PREV</span>
+      <div class="screen-dots" id="screenDots"></div>
+      <span class="screen-nav" id="screenNext">NEXT ►</span>
+      <span class="screen-exit" id="screenExitBtn">✕ DISCONNECT</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PANEL OVERLAY ═══════════════ -->
+  <div id="panelOverlay" class="panel-overlay hidden">
+    <div class="panel-backdrop" id="panelBackdrop"></div>
+    <div class="panel" id="activePanel">
+      <button class="panel-close" id="panelClose">✕ CLOSE</button>
+      <div class="panel-content" id="panelContent"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ THREE.JS IMPORTS ═══════════════ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+
+</body>
+</html>
