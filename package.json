@@ -1,7 +1,4 @@
 {
   "name": "batcave-portfolio",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "git clone https://github.com/vishwastiwari01/Batfolio.git temp_repo && cp temp_repo/models/* models/ && rm -rf temp_repo"
-  }
+  "version": "1.0.0"
 }

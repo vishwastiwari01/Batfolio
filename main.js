@@ -438,7 +438,7 @@ function onModelReady(progressTarget) {
 }
 
 // ─── BATCAVE ───
-gltfLoader.load('./models/the_batcave.glb',
+gltfLoader.load('https://media.githubusercontent.com/media/vishwastiwari01/Batfolio/main/models/the_batcave.glb',
   (gltf) => {
     batcaveModel = gltf.scene
     autoFitModel(batcaveModel, 20)
@@ -475,7 +475,7 @@ gltfLoader.load('./models/the_batcave.glb',
 )
 
 // ─── AVENTADOR ───
-gltfLoader.load('./models/aventador.glb',
+gltfLoader.load('https://media.githubusercontent.com/media/vishwastiwari01/Batfolio/main/models/aventador.glb',
   (gltf) => {
     aventadorModel = gltf.scene
     autoFitModel(aventadorModel, 5)
@@ -491,7 +491,7 @@ gltfLoader.load('./models/aventador.glb',
 )
 
 // ─── BATPOD ───
-gltfLoader.load('./models/dark_knight_batpod.glb',
+gltfLoader.load('https://media.githubusercontent.com/media/vishwastiwari01/Batfolio/main/models/dark_knight_batpod.glb',
   (gltf) => {
     batpodModel = gltf.scene
     autoFitModel(batpodModel, 3.5)
@@ -508,7 +508,7 @@ gltfLoader.load('./models/dark_knight_batpod.glb',
 )
 
 // ─── BATMAN / BAT-SIGNAL ───
-gltfLoader.load('./models/batman_the_animated_series_1992.glb',
+gltfLoader.load('https://media.githubusercontent.com/media/vishwastiwari01/Batfolio/main/models/batman_the_animated_series_1992.glb',
   (gltf) => {
     batsignalModel = gltf.scene
     autoFitModel(batsignalModel, 4.5)   // slightly smaller
