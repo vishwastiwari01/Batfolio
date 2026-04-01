@@ -1,0 +1,7 @@
+{
+  "name": "batcave-portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "git lfs pull"
+  }
+}

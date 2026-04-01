@@ -1,0 +1,5 @@
+{
+  "buildCommand": "git lfs pull",
+  "outputDirectory": ".",
+  "framework": null
+}
